@@ -6,6 +6,7 @@ module Trailblazer
     config.trailblazer = ActiveSupport::OrderedOptions.new
     ## Accept also an Array of controllers
     config.trailblazer.application_controller ||= 'ActionController::Base'
+    config.trailblazer.log_subscriber ||= false
 
     def self.load_concepts(app)
       # Loader.new.(insert: [ModelFile, before: Loader::AddConceptFiles]) { |file| require_dependency("#{app.root}/#{file}") }
@@ -43,6 +44,14 @@ module Trailblazer
       reloader_class.to_prepare do
         ActiveSupport.on_load(:action_controller) do |app|
           Trailblazer::Railtie.extend_application_controller!(app)
+        end
+      end
+    end
+
+    initializer "trailblazer.log_suscriber" do
+      if config.trailblazer.log_subscriber
+        Operation.class_eval do
+          include Trailblazer::Logging::Instrumentation
         end
       end
     end

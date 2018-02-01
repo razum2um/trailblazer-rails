@@ -1,3 +1,7 @@
+# 1.0.6
+
+* Add ActiveSupport Notifications via `config.trailblazer.log_subscriber`
+
 # 1.0.5
 
 * Hook trailblazer application_controller initializer to finisher_hook

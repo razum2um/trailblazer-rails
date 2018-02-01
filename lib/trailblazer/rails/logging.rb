@@ -2,11 +2,11 @@ module Trailblazer
   module Logging
     class LogSubscriber < ActiveSupport::LogSubscriber
       def self.runtime=(value)
-        Thread.current[:trb_log_runtime] = value
+        Thread.current[:trailblazer_log_runtime] = value
       end
 
       def self.runtime
-        Thread.current[:trb_log_runtime] ||= 0
+        Thread.current[:trailblazer_log_runtime] ||= 0
       end
 
       def self.reset_runtime
@@ -76,10 +76,6 @@ module Trailblazer
           end
         end
       end
-    end
-
-    Operation.class_eval do
-      prepend Trailblazer::Logging::Instrumentation
     end
   end
 end
