@@ -4,16 +4,13 @@ cache: bundler
 matrix:
   include:
   - rvm: 2.4.1
-    env: TEST_SUITE=rails5.0
-    gemfile: test/rails5.0/Gemfile
-
+    env: RAILS_VERSION=4.2.10
   - rvm: 2.4.1
-    env: TEST_SUITE=rails5.1
-    gemfile: test/rails5.1/Gemfile
-
+    env: RAILS_VERSION=5.0.7
+  - rvm: 2.4.1
+    env: RAILS_VERSION=5.1.6
   - rvm: 2.5.1
-    env: TEST_SUITE=rails5.2
-    gemfile: test/rails5.2/Gemfile
+    env: RAILS_VERSION=5.2.0
 
-script: cd test/$TEST_SUITE && bundle install && bundle exec rake test && cd ../.. && bundle install && bundle exec rake rubocop
+script: bundle exec rake test
 

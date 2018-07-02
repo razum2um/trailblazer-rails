@@ -16,10 +16,7 @@ module Trailblazer
 
         def extend_application_controller!(app)
           controllers = Array(::Rails.application.config.trailblazer.application_controller).map(&:to_s)
-          if controllers.include? app.to_s
-            app.send :include, Trailblazer::Rails::Controller
-            app.send :include, Trailblazer::Rails::Controller::Cell if defined?(::Cell)
-          end
+          app.send :include, Trailblazer::Rails::Controller if controllers.include? app.to_s
           app
         end
       end

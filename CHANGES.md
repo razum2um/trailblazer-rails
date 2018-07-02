@@ -1,7 +1,8 @@
 # 2.1.5
 
-* Add dependency `railties` >= 5.0.7
+* Add dependency `railties` >= 4.2.10
 * rename `run` to `run_v21` and alias it to `run` only if it not already defined
+* Moved cells support to cells-rails
 
 # 2.1.4
 
